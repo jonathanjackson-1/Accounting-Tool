@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "accounting-agents-backend"
+version = "0.1.0"
+description = "Staging backend skeleton for accounting reports powered by OpenAI Agents."
+authors = [{ name = "Accounting Tool Maintainers" }]
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.109",
+  "uvicorn[standard]>=0.24",
+  "httpx>=0.25",
+  "python-multipart>=0.0.6",
+  "pydantic>=2.5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "httpx[http2]>=0.25"]
+
+[project.scripts]
+accounting-api = "app.main:create_app"
+
+[tool.uvicorn]
+factory = true
+app = "app.main:create_app"
+host = "0.0.0.0"
+port = 8000
